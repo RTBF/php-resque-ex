@@ -74,6 +74,7 @@ class Resque_Job
 			'class'	=> $class,
 			'args'	=> array($args),
 			'id'	=> $id,
+            'time'  => time()
 		));
 
 		if ($monitor) {
