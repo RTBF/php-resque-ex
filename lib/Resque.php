@@ -337,4 +337,23 @@ class Resque
         return md5(uniqid('', true));
     }
 
+    /**
+     * Peek
+     *
+     * @param string $queue The name of the queue
+     * @param integer $start
+     * @param integer $count
+     *
+     * @return array List of jobs
+     *
+     */
+    public static function peek($queue, $start=0, $count=1000)
+    {
+        $jobs = self::redis()->lrange('queue:'.$queue, $start, $count);
+        if(!is_array($jobs)) {
+            $jobs = array();
+        }
+        return $jobs;
+    }
+
 }
